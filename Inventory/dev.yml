@@ -9,20 +9,4 @@
 172.31.45.11 ansible_ssh_user='ec2-user' 
 
 [lb]
-172.31.42.68 ansible_ssh_user='ubuntu'[nfs]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+172.31.42.68 ansible_ssh_user='ubuntu'
