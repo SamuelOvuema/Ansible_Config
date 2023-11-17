@@ -17,10 +17,10 @@
 #- hosts: uat-webservers
 #- import_playbook: ../static-assignments/uat-webservers.yml
 
-- hosts: db
-- import_playbook: ../static-assignments/database.yml
+# - hosts: db
+# - import_playbook: ../static-assignments/database.yml
 
-# - hosts: lb
-# - name: Loadbalancers assignment
-#   import_playbook: ../static-assignments/loadbalancer.yml
-#   when: load_balancer_is_required 
+ - hosts: lb
+ - name: Loadbalancers assignment
+   import_playbook: ../static-assignments/loadbalancer.yml
+   when: load_balancer_is_required 
