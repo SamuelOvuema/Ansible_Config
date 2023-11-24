@@ -10,6 +10,7 @@ pipeline {
       }
     }
 
+
     stage('Test') {
       steps {
         script {
@@ -17,6 +18,31 @@ pipeline {
         }
       }
     }
+
+    stage('Packaging') {
+      steps {
+        script {
+          sh 'echo "Packaging Stage"'
+        }
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        script {
+          sh 'echo "Deployment Stage"'
+        }
+      }
+    }
+
+    stage('Clean up') {
+      steps {
+        script {
+          sh 'echo "Cleaning Stage"'
+        }
+      }
+    }
+
     }
 }
 
