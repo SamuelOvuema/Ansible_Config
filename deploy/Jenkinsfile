@@ -1,48 +1,45 @@
-pipeline {
+pipeline{
     agent any
 
-  stages {
-    stage('Build') {
-      steps {
-        script {
-          sh 'echo "Building Stage"'
+    environment{
+        ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
+    }
+
+    parameters {
+      string(name: 'inventory', defaultValue: 'dev',  description: 'This is the inventory file for the environment to deploy configuration')
+    }
+
+    stages{
+        stage("Workspace Cleanup") {
+            steps {
+                dir("${WORKSPACE}") {
+                    deleteDir()
+                }
+            }
         }
-      }
-    }
-
-
-    stage('Test') {
-      steps {
-        script {
-          sh 'echo "Testing Stage"'
+        stage('SCM Checkout'){
+            steps{
+                git branch: 'main', credentialsId: '81ade414-d79c-4c15-adc6-afa3ace2787e', url: 'https://github.com/Micah-Shallom/ansible-config-mgt.git'
+            }
         }
-      }
-    }
 
-    stage('Packaging') {
-      steps {
-        script {
-          sh 'echo "Packaging Stage"'
+        stage('Prepare Ansible For Execution') {
+            steps {
+                sh 'echo ${WORKSPACE}' 
+                sh 'sed -i "3 a roles_path=${WORKSPACE}/roles" ${WORKSPACE}/deploy/ansible.cfg'  
+            }
         }
-      }
-    }
 
-    stage('Deploy') {
-      steps {
-        script {
-          sh 'echo "Deployment Stage"'
+        stage('Run ansible playbook'){
+            steps{
+               ansiblePlaybook become: true, colorized: true, credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory/${inventory}', playbook: 'playbooks/site.yaml'
+            }
         }
+        stage('Clean Workspace after build'){
+            steps{
+                cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
+            }
       }
-    }
-
-    stage('Clean up') {
-      steps {
-        script {
-          sh 'echo "Cleaning Stage"'
-        }
-      }
-    }
-
-    }
+}
 }
 
