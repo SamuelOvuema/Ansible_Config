@@ -4,10 +4,10 @@
 #   roles:
 #   - webserver
 
-#   - hosts: nginx
-#   become: true
-#   roles:
-#      - nginx
+  - hosts: nginx
+    become: true
+    roles:
+       - nginx
 
 # - hosts: sonar
 #   become: true

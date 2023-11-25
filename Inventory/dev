@@ -17,8 +17,8 @@
 # [todo]
 # <Todo-Web-Server-Private-IP-Address>
 
-# [nginx]
-# <Nginx-Private-IP-Address>
+[nginx]
+172.31.40.159 ansible_ssh_user='ec2-user'
 
 # [db:vars]
 # ansible_user=ec2-user
