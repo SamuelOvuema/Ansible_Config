@@ -1,25 +1,24 @@
 ---
-# - hosts: uat-webservers
-#   become: yes
+# - hosts: db
 #   roles:
-#   - webserver
-
+#      - mysql
+  
   - hosts: nginx
-    become: true
     roles:
        - nginx
 
-# - hosts: sonar
-#   become: true
-#   roles:
-#      - sonarqube
-
-# - hosts: db
-#   become: true
-#   roles:
-#      - mysql
-
 # - hosts: artifactory
-#   become: true
 #   roles:
-#     - artifactory     
+#      - artifactory
+  
+# - hosts: todo
+#   roles:
+#     - php
+
+# - hosts: sonarqube
+#   roles:
+#     - sonarqube
+
+# - hosts: sonar
+#   roles:
+#     - sonar

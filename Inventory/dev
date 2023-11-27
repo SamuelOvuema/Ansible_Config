@@ -1,15 +1,16 @@
-[tooling]
-<Tooling-Web-Server-Private-IP-Address>
+---
 
-[todo]
-<Todo-Web-Server-Private-IP-Address>
+#[tooling]
+#172.31.11.134
+
+# [todo]
+# 172.31.40.159 ansible_ssh_user='ec2-user'
 
 [nginx]
 172.31.40.159 ansible_ssh_user='ec2-user'
 
-[db:vars]
-ansible_user=ec2-user
-ansible_python_interpreter=/usr/bin/python
+#[db:vars]
+#ansible_user=ubuntu
 
-[db]
-<DB-Server-Private-IP-Address>
+# [db]
+# 172.31.23.24 ansible_ssh_user='ubuntu'
