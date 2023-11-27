@@ -3,9 +3,9 @@
 #   roles:
 #      - mysql
   
-  # - hosts: nginx
-  #   roles:
-  #      - nginx
+  - hosts: nginx
+    roles:
+       - nginx
 
 - hosts: artifactory
   roles:
