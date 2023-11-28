@@ -11,7 +11,7 @@ mysql_root_username: root
 mysql_root_password: root
 
 # Set this to `true` to forcibly update the root password.
-mysql_root_password_update: false
+mysql_root_password_update: yes
 mysql_user_password_update: false
 
 mysql_enabled_on_startup: true
@@ -107,23 +107,16 @@ mysql_config_include_files: []
 
 # Databases.
 mysql_databases:
-   - name: 'tooling'
+   - name: tooling
      collation: utf8_general_ci
      encoding: utf8
      replicate: 1
-
 # Users.
 mysql_users:
-  mysql_users: 
-   - name: admin
+   - name: webaccess
      host: 0.0.0.0
      password: secret
-     priv: admin.*:ALL
-  
-   - name: webaccess
-     host: 127.0.0.1
-     password: secret1
-     priv: webaccess.*:ALL
+     priv: '*.*:ALL,GRANT'
 
 mysql_disable_log_bin: false
 
